@@ -1,10 +1,34 @@
 <template>
-  <div>{{symbol}}</div>
+  <div
+    v-bind:style="{
+      width: `${width*64 + (width-1)*4}px`,
+      height: `${height*64 + (height-1)*4}px`,
+      backgroundColor: '#1976d2',
+      borderRadius: '10px',
+      lineHeight: `${height*64 + (height-1)*4}px`,
+      fontSize: '24px',
+      color: 'white',
+      boxShadow: '0 3px 1px -2px rgba(0,0,0,.2),0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12)',
+      cursor: 'pointer',
+    }"
+  >
+    {{symbol}}
+  </div>
 </template>
 
 <script>
   export default {
     name: 'Button',
-    props: ['symbol'],
+    props: {
+      symbol: {},
+      width: {
+        type: Number,
+        default: 1,
+      },
+      height: {
+        type: Number,
+        default: 1,
+      },
+    }
   }
 </script>
