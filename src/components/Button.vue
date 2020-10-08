@@ -1,7 +1,7 @@
 <template>
   <div
     v-bind:style="{
-      width: `${width*64 + (width-1)*4}px`,
+      width: width,
       height: `${height*64 + (height-1)*4}px`,
       backgroundColor: '#1976d2',
       borderRadius: '10px',
@@ -22,8 +22,8 @@
     props: {
       symbol: {},
       width: {
-        type: Number,
-        default: 1,
+        type: String,
+        default: '100%',
       },
       height: {
         type: Number,

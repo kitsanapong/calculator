@@ -1,32 +1,47 @@
 <template>
-  <v-container>
-    <v-row>124</v-row>
-    <v-row>2 x 62</v-row>
+  <v-container
+    v-bind:style="{
+      boxShadow: '0px 3px 3px -2px rgba(0,0,0,0.2), 0px 3px 4px 0px rgba(0,0,0,0.14), 0px 1px 8px 0px rgba(0,0,0,0.12)',
+      borderRadius: '20px',
+      padding: '20px',
+    }"
+  >
+    <v-row class="mb-2">
+      <input
+        v-model="resultValue"
+        v-bind:style="{ height: '64px', fontSize: '64px'}"
+      >
+    </v-row>
+    <v-row
+      v-bind:style="{ fontSize: '24px' }"
+    >
+      2 x 62
+    </v-row>
     <v-row justify="">
       <v-col cols="9">
         <v-row class="mb-1">
-          <Button symbol="C"/>
-          <Button symbol="x" class="mx-1"/>
-          <Button symbol="-"/>
+          <Button symbol="C" width="33%"/>
+          <Button symbol="x" width="33%"/>
+          <Button symbol="-" width="33%"/>
         </v-row>
         <v-row class="mb-1">
-          <Button symbol="7"/>
-          <Button symbol="8" class="mx-1"/>
-          <Button symbol="9"/>
+          <Button symbol="7" width="33%"/>
+          <Button symbol="8" width="33%"/>
+          <Button symbol="9" width="33%" />
         </v-row>
         <v-row class="mb-1">
-          <Button symbol="4"/>
-          <Button symbol="5" class="mx-1"/>
-          <Button symbol="6"/>
+          <Button symbol="4" width="33%"/>
+          <Button symbol="5" width="33%"/>
+          <Button symbol="6" width="33%"/>
         </v-row>
         <v-row class="mb-1">
-          <Button symbol="1"/>
-          <Button symbol="2" class="mx-1"/>
-          <Button symbol="3"/>
+          <Button symbol="1" width="33%"/>
+          <Button symbol="2" width="33%"/>
+          <Button symbol="3" width="33%"/>
         </v-row>
         <v-row>
-          <Button symbol="0" width="2" class="mr-1"/>
-          <Button symbol="."/>
+          <Button symbol="0" width="66%"/>
+          <Button symbol="." width="33%"/>
         </v-row>
       </v-col>
       <v-col cols="3">
@@ -49,8 +64,7 @@ export default {
     Button,
   },
   data: () => ({
-    ecosystem: [
-    ],
+    resultValue: 124,
   }),
 }
 </script>
