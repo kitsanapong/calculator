@@ -11,6 +11,7 @@
       boxShadow: '0 3px 1px -2px rgba(0,0,0,.2),0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12)',
       cursor: 'pointer',
     }"
+    v-on:click="onClick"
   >
     {{symbol}}
   </div>
@@ -20,7 +21,9 @@
   export default {
     name: 'Button',
     props: {
-      symbol: {},
+      symbol: {
+        type: String,
+      },
       width: {
         type: String,
         default: '100%',
@@ -29,6 +32,11 @@
         type: Number,
         default: 1,
       },
+    },
+    methods: {
+      onClick: function() {
+        this.$emit('paddle-click', this.symbol);
+      }
     }
   }
 </script>

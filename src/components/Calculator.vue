@@ -15,38 +15,38 @@
     <v-row
       v-bind:style="{ fontSize: '24px' }"
     >
-      2 x 62
+      12 + 1111
     </v-row>
     <v-row justify="">
       <v-col cols="9">
         <v-row class="mb-1">
           <Button symbol="C" width="33%"/>
-          <Button symbol="x" width="33%"/>
-          <Button symbol="-" width="33%"/>
+          <Button symbol="x" value="*" width="33%" @paddle-click="paddleClick"/>
+          <Button symbol="-" width="33%" @paddle-click="paddleClick"/>
         </v-row>
         <v-row class="mb-1">
-          <Button symbol="7" width="33%"/>
-          <Button symbol="8" width="33%"/>
-          <Button symbol="9" width="33%" />
+          <Button symbol="7" width="33%" @paddle-click="paddleClick"/>
+          <Button symbol="8" width="33%" @paddle-click="paddleClick"/>
+          <Button symbol="9" width="33%" @paddle-click="paddleClick"/>
         </v-row>
         <v-row class="mb-1">
-          <Button symbol="4" width="33%"/>
-          <Button symbol="5" width="33%"/>
-          <Button symbol="6" width="33%"/>
+          <Button symbol="4" width="33%" @paddle-click="paddleClick"/>
+          <Button symbol="5" width="33%" @paddle-click="paddleClick"/>
+          <Button symbol="6" width="33%" @paddle-click="paddleClick"/>
         </v-row>
         <v-row class="mb-1">
-          <Button symbol="1" width="33%"/>
-          <Button symbol="2" width="33%"/>
-          <Button symbol="3" width="33%"/>
+          <Button symbol="1" width="33%" @paddle-click="paddleClick"/>
+          <Button symbol="2" width="33%" @paddle-click="paddleClick"/>
+          <Button symbol="3" width="33%" @paddle-click="paddleClick"/>
         </v-row>
         <v-row>
-          <Button symbol="0" width="66%"/>
-          <Button symbol="." width="33%"/>
+          <Button symbol="0" width="66%" @paddle-click="paddleClick"/>
+          <Button symbol="." width="33%" @paddle-click="paddleClick"/>
         </v-row>
       </v-col>
       <v-col cols="3">
         <v-row>
-          <Button symbol="+" height="2" class="mb-1"/>
+          <Button symbol="+" height="2" class="mb-1" @paddle-click="paddleClick"/>
         </v-row>
         <v-row>
           <Button symbol="=" height="3"/>
@@ -66,5 +66,10 @@ export default {
   data: () => ({
     resultValue: 124,
   }),
+  methods: {
+    paddleClick: function(value) {
+      console.log(value)
+    }
+  }
 }
 </script>
