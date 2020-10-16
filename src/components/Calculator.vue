@@ -64,12 +64,19 @@ export default {
     Button,
   },
   data: () => ({
-    resultValue: 124,
+    resultValue: '',
     inputValue: '',
+    newRound: false,
   }),
   methods: {
     paddleClick: function(value) {
-      this.inputValue += value
+      if (this.newRound) {
+        this.inputValue = value
+        this.resultValue = ''
+        this.newRound = false
+      } else {
+        this.inputValue += value
+      }
     },
     submitValue: async function() {
       const formatedInput = encodeURIComponent(this.inputValue.replace('x','*')) 
@@ -79,6 +86,8 @@ export default {
       } else {
         this.resultValue = 'ERROR'
       }
+      
+      this.newRound = true
     }
   }
 }
