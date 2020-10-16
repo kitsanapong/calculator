@@ -57,11 +57,18 @@
 
 <script>
 import Axios from 'axios'
+import moment from 'moment'
 import Button from './Button'
 export default {
   name: 'Calculator',
   components: {
     Button,
+  },
+  props: {
+    name: {
+      type: String,
+      default: 'Calculator'
+    }
   },
   data: () => ({
     resultValue: '',
@@ -87,6 +94,12 @@ export default {
         this.resultValue = 'ERROR'
       }
       
+      this.$emit('add-history', {
+        result: this.resultValue,
+        input: this.inputValue,
+        time: `${moment().format('DD/MM/YYYY - HH:mm:ss')}`,
+        name: this.name,
+      })
       this.newRound = true
     },
     clearValue: function() {

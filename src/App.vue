@@ -14,13 +14,13 @@
       <v-container>
         <v-row class="text-center">
           <v-col cols="3">
-            <Calculator/>
+            <Calculator name="Calculator A" @add-history="addHistory" />
           </v-col>
           <v-col cols="3">
-            <Calculator/>
+            <Calculator name="Calculator B" @add-history="addHistory" />
           </v-col>
           <v-col cols="5">
-            History
+            {{history}}
           </v-col>
         </v-row>
       </v-container>
@@ -39,7 +39,12 @@ export default {
   },
 
   data: () => ({
-    //
+    history: [],
   }),
+  methods: {
+    addHistory: function(item) {
+      this.history = [item, ...this.history]
+    },
+  }
 };
 </script>
