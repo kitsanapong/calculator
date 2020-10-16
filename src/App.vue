@@ -5,7 +5,7 @@
       color="primary"
       dark
     >
-      <div class="d-flex align-center">
+      <div class="d-flex">
         Double Calculator
       </div>
     </v-app-bar>
@@ -19,8 +19,25 @@
           <v-col cols="3">
             <Calculator name="Calculator B" @add-history="addHistory" />
           </v-col>
-          <v-col cols="5">
-            {{history}}
+          <v-col cols="5"
+            v-bind:style="{
+              boxShadow: '0px 3px 3px -2px rgba(0,0,0,0.2), 0px 3px 4px 0px rgba(0,0,0,0.14), 0px 1px 8px 0px rgba(0,0,0,0.12)',
+              borderRadius: '20px',
+              padding: '10px 20px 20px 20px',
+            }"
+          >
+            <div v-for="(item, index) in history" :key="index">
+              <v-row class="justify-space-between">
+                <div>{{item.name}}</div>
+                <div>{{item.time}}</div>
+              </v-row>
+              <v-row>
+                {{item.result}}
+              </v-row>
+              <v-row>
+                {{item.input}}
+              </v-row>
+            </div>
           </v-col>
         </v-row>
       </v-container>
