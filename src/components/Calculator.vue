@@ -13,9 +13,9 @@
       >
     </v-row>
     <v-row
-      v-bind:style="{ fontSize: '24px' }"
+      v-bind:style="{ fontSize: '24px', height: '36px' }"
     >
-      12 + 1111
+      {{inputValue}}
     </v-row>
     <v-row justify="">
       <v-col cols="9">
@@ -65,10 +65,11 @@ export default {
   },
   data: () => ({
     resultValue: 124,
+    inputValue: '',
   }),
   methods: {
     paddleClick: function(value) {
-      console.log(value)
+      this.inputValue += value
     }
   }
 }
