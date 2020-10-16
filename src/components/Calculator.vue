@@ -19,7 +19,7 @@
     <v-row justify="">
       <v-col cols="9">
         <v-row class="mb-1">
-          <Button symbol="C" width="33%"/>
+          <Button symbol="C" width="33%" @paddle-click="clearValue"/>
           <Button symbol="x" value="*" width="33%" @paddle-click="paddleClick"/>
           <Button symbol="-" width="33%" @paddle-click="paddleClick"/>
         </v-row>
@@ -87,6 +87,11 @@ export default {
         this.resultValue = 'ERROR'
       }
       
+      this.newRound = true
+    },
+    clearValue: function() {
+      this.resultValue = ''
+      this.inputValue = ''
       this.newRound = true
     }
   }
