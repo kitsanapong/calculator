@@ -7,10 +7,9 @@
     }"
   >
     <v-row class="mb-2">
-      <input
-        v-model="resultValue"
+      <div
         v-bind:style="{ height: '64px', fontSize: '64px'}"
-      >
+      >{{resultValue}}</div>
     </v-row>
     <v-row
       v-bind:style="{ fontSize: '24px', height: '36px' }"
@@ -49,7 +48,7 @@
           <Button symbol="+" height="2" class="mb-1" @paddle-click="paddleClick"/>
         </v-row>
         <v-row>
-          <Button symbol="=" height="3"/>
+          <Button symbol="=" height="3" @paddle-click="submitValue"/>
         </v-row>
       </v-col>
     </v-row>
@@ -57,6 +56,7 @@
 </template>
 
 <script>
+import Axios from 'axios'
 import Button from './Button'
 export default {
   name: 'Calculator',
@@ -70,6 +70,15 @@ export default {
   methods: {
     paddleClick: function(value) {
       this.inputValue += value
+    },
+    submitValue: async function() {
+      const formatedInput = encodeURIComponent(this.inputValue.replace('x','*')) 
+      const res = await Axios.get(`http://api.mathjs.org/v4/?expr=${formatedInput}`)
+      if (res && res.status === 200) {
+        this.resultValue = res.data
+      } else {
+        this.resultValue = 'ERROR'
+      }
     }
   }
 }
