@@ -11,33 +11,42 @@
     </v-app-bar>
 
     <v-main>
-      <v-container>
-        <v-row class="text-center">
+      <v-container v-bind:style="{ maxWidth: 'none' }">
+        <v-row class="text-center justify-center">
           <v-col cols="3">
             <Calculator name="Calculator A" @add-history="addHistory" />
           </v-col>
           <v-col cols="3">
             <Calculator name="Calculator B" @add-history="addHistory" />
           </v-col>
-          <v-col cols="5"
+          <v-col cols="5">
+          <div
             v-bind:style="{
               boxShadow: '0px 3px 3px -2px rgba(0,0,0,0.2), 0px 3px 4px 0px rgba(0,0,0,0.14), 0px 1px 8px 0px rgba(0,0,0,0.12)',
               borderRadius: '20px',
               padding: '10px 20px 20px 20px',
-            }"
-          >
-            <div v-for="(item, index) in history" :key="index">
+              height: '650px',
+              overflow: 'scroll',
+            }">
+            <div
+              v-for="(item, index) in history"
+              :key="index"
+              v-bind:style="{
+                padding: '20px',
+              }"
+            >
               <v-row class="justify-space-between">
-                <div>{{item.name}}</div>
-                <div>{{item.time}}</div>
+                <div v-bind:style="{ fontSize: '24px' }">{{item.name}}</div>
+                <div v-bind:style="{ fontSize: '24px', color: '#1976d2', opacity: '0.6' }">{{item.time}}</div>
               </v-row>
-              <v-row>
+              <v-row v-bind:style="{ fontSize: '48px', borderBottom: '1px solid #bbb' }">
                 {{item.result}}
               </v-row>
-              <v-row>
+              <v-row v-bind:style="{ fontSize: '24px' }">
                 {{item.input}}
               </v-row>
             </div>
+          </div>            
           </v-col>
         </v-row>
       </v-container>

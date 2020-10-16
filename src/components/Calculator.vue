@@ -8,7 +8,7 @@
   >
     <v-row class="mb-5">
       <div
-        v-bind:style="{ height: '64px', fontSize: '64px'}"
+        v-bind:style="{ height: '48px', fontSize: '48px'}"
       >{{resultValue}}</div>
     </v-row>
     <v-row
