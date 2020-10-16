@@ -87,20 +87,27 @@ export default {
     },
     submitValue: async function() {
       const formatedInput = encodeURIComponent(this.inputValue.replace('x','*')) 
-      const res = await Axios.get(`http://api.mathjs.org/v4/?expr=${formatedInput}`)
-      if (res && res.status === 200) {
+      try {
+        const res = await Axios.get(`http://api.mathjs.org/v4/?expr=${formatedInput}`)
         this.resultValue = res.data
-      } else {
+        
+        this.$emit('add-history', {
+          result: this.resultValue,
+          input: this.inputValue,
+          time: `${moment().format('DD/MM/YYYY - HH:mm:ss')}`,
+          name: this.name,
+        })
+        this.newRound = true
+      } catch (e) {
         this.resultValue = 'ERROR'
+        this.$emit('add-history', {
+          result: 'ERROR',
+          input: this.inputValue,
+          time: `${moment().format('DD/MM/YYYY - HH:mm:ss')}`,
+          name: this.name,
+        })
+        this.newRound = true
       }
-      
-      this.$emit('add-history', {
-        result: this.resultValue,
-        input: this.inputValue,
-        time: `${moment().format('DD/MM/YYYY - HH:mm:ss')}`,
-        name: this.name,
-      })
-      this.newRound = true
     },
     clearValue: function() {
       this.resultValue = ''
