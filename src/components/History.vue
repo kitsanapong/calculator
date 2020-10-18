@@ -106,6 +106,10 @@ export default {
         || resultString.indexOf(this.textSearch) >= 0
         || item.time.indexOf(this.textSearch) >= 0
       })
+      .filter((item) => {
+        return this.nameSearch == 'All'
+        || item.name === this.nameSearch
+      })
     }
   },
   methods: {
