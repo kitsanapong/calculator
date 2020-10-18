@@ -102,7 +102,9 @@ export default {
     filterdHistory: function () {
       return this.history.filter((item) => {
         const resultString = item.result + ''
-        return this.textSearch === '' || resultString.indexOf(this.textSearch) >= 0
+        return this.textSearch === ''
+        || resultString.indexOf(this.textSearch) >= 0
+        || item.time.indexOf(this.textSearch) >= 0
       })
     }
   },
