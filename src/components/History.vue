@@ -45,7 +45,7 @@
         position: 'relative',
       }">
       <div
-        v-for="(item, index) in history"
+        v-for="(item, index) in filterdHistory"
         :key="index"
         v-bind:style="{
           padding: '20px',
@@ -96,6 +96,14 @@ export default {
       textSearch: '',
       nameSearch: 'All',
       calculators: ['All', 'CalA', 'CalB'],
+    }
+  },
+  computed: {
+    filterdHistory: function () {
+      return this.history.filter((item) => {
+        const resultString = item.result + ''
+        return this.textSearch === '' || resultString.indexOf(this.textSearch) >= 0
+      })
     }
   },
   methods: {
