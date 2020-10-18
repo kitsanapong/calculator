@@ -38,16 +38,26 @@ export default {
     Calculator,
     History,
   },
-
+  beforeMount: function (){
+    try {
+      const savedHistory = localStorage.getItem('history')
+      if (savedHistory !== null) this.$set(this, 'history', JSON.parse(savedHistory))
+      else this.$set(this, 'history', [])
+    } catch (e) {
+      this.$set(this, 'history', [])
+    }
+  },
   data: () => ({
     history: [],
   }),
   methods: {
     addHistory: function(item) {
       this.history = [item, ...this.history]
+      localStorage.setItem('history', JSON.stringify(this.history))
     },
     clearHistory: function() {
       this.history = []
+      localStorage.removeItem('history')
     }
   }
 };
