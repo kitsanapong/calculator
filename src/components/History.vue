@@ -62,23 +62,43 @@
           {{item.input}}
         </v-row>
       </div>
-      <div
-        v-bind:style="{
-          position: 'absolute',
-          bottom: '30px',
-          right: '30px',
-          fontSize: '24px',
-          color: 'white',
-          backgroundColor: 'red',
-          borderRadius: '10px',
-          padding: '5px 15px',
-          boxShadow: '0 3px 1px -2px rgba(0,0,0,.2),0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12)',
-          cursor: 'pointer',
-        }"
-        v-on:click="clearHistory"
+      <v-btn
+          color="red"
+          dark
+          v-on:click="clearHistory"
+          v-bind:style="{
+            position: 'absolute',
+            bottom: '30px',
+            right: '30px',
+          }"
+        >
+          Clear
+        </v-btn>
+
+      <v-dialog
+        v-model="confirm"
+        width="500"
       >
-        Clear
-      </div>
+        <v-card>
+          <v-card-title class="headline grey lighten-2">
+            Are you sure?
+          </v-card-title>
+          <v-card-text>
+            Calculator history will be deleted forever and can not restore.
+          </v-card-text>
+          <v-divider></v-divider>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn
+              color="primary"
+              text
+              v-on:click="confirmClearHistory"
+            >
+              OK
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
     </div>
   </div>
 </template>
@@ -99,6 +119,7 @@ export default {
     return {
       textSearch: '',
       nameSearch: 'All',
+      confirm: false,
     }
   },
   computed: {
@@ -120,8 +141,12 @@ export default {
   },
   methods: {
     clearHistory: function() {
-      this.$emit('clear-history')
+      this.confirm = true
     },
+    confirmClearHistory: function() {
+      this.confirm = false
+      this.$emit('clear-history')
+    }
   }
 }
 </script>
