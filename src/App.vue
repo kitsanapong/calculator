@@ -20,7 +20,7 @@
             <Calculator name="Calculator B" @add-history="addHistory" />
           </v-col>
           <v-col cols="5">
-            <History :history="history" @clear-history="clearHistory"/>
+            <History :calculators="['Calculator A', 'Calculator B']" :history="history" @clear-history="clearHistory"/>
           </v-col>
         </v-row>
       </v-container>

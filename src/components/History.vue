@@ -25,7 +25,7 @@
       <v-select
         v-model="nameSearch"
         outlined
-        :items="calculators"
+        :items="calculatorNameOptions"
         label="Calculator"
         v-bind:style="{
           height: '56px',
@@ -89,16 +89,22 @@ export default {
     history: {
       type: Array,
       default: () => [],
+    },
+    calculators: {
+      type: Array,
+      default: () => ['All'],
     }
   },
   data: function() {
     return {
       textSearch: '',
       nameSearch: 'All',
-      calculators: ['All', 'CalA', 'CalB'],
     }
   },
   computed: {
+    calculatorNameOptions: function() {
+      return ['All', ...this.calculators]
+    },
     filterdHistory: function () {
       return this.history.filter((item) => {
         const resultString = item.result + ''
